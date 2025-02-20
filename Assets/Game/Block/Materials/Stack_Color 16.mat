@@ -282,7 +282,7 @@ Material:
     - _ZWrite: 1
     - __dirty: 1
     m_Colors:
-    - _AlbedoColor: {r: 0.7254902, g: 0.69803923, b: 0.74509805, a: 1}
+    - _AlbedoColor: {r: 0.7169812, g: 0.3077608, b: 0.3606305, a: 1}
     - _Color: {r: 0.3921569, g: 0.8235295, b: 1, a: 1}
     - _ColorMultiply: {r: 0.25161976, g: 0.68181515, b: 0.8773585, a: 0}
     - _DetailColor: {r: 1, g: 1, b: 1, a: 1}
@@ -295,7 +295,7 @@ Material:
     - _LightTransmissionColor: {r: 1, g: 0.65, b: 0, a: 1}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _RimBrightColor: {r: 1, g: 1, b: 1, a: 1}
-    - _RimColor: {r: 0, g: 0, b: 0, a: 1}
+    - _RimColor: {r: 0.49056602, g: 0.14211, b: 0.034709856, a: 1}
     - _RimDarkColor: {r: 0, g: 0, b: 0, a: 1}
     - _SolidColor: {r: 1, g: 1, b: 1, a: 0}
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
