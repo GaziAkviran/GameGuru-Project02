@@ -23,6 +23,29 @@ public class PlayerController : MonoBehaviour
         gameStateManager = GameStateManager.Instance;
         gameStateManager.OnGameStateChanged += HandleGameStateChanged;
     }
+
+    private void Update()
+    {
+        if (gameStateManager.CurrentState != GameState.Gameplay) return;
+        CalculateMovement();
+    }
+
+    void FixedUpdate()
+    {
+        if (gameStateManager.CurrentState != GameState.Gameplay) return;
+       
+        MovePlayer();
+    }
+    
+    private void CalculateMovement()
+    {
+        moveDirection = new Vector3(horizontalInput * horizontalSpeed, 0, forwardSpeed);
+    }
+
+    private void MovePlayer()
+    {
+        transform.Translate(moveDirection * Time.fixedDeltaTime);
+    }
     
     private void OnDestroy()
     {

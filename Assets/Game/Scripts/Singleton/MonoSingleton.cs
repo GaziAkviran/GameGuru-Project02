@@ -31,8 +31,6 @@ public abstract class MonoSingleton<T> : MonoBehaviour where T : MonoSingleton<T
                         singletonObject.name = $"[Singleton] {typeof(T)}";
                         
                         DontDestroyOnLoad(singletonObject);
-                        
-                        Debug.Log($"[Singleton] An instance of {typeof(T)} was created.");
                     }
                 }
                 
