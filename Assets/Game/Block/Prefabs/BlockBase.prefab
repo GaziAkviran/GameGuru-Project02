@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9069737337764789380}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 1970508061824748705}
   - component: {fileID: 69033953455182039}
   - component: {fileID: 1085615798227962390}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MainBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -142,7 +142,7 @@ GameObject:
   - component: {fileID: 7271603968865334096}
   - component: {fileID: 4028315774209113544}
   - component: {fileID: 2881743797100045931}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CutBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -238,7 +238,7 @@ GameObject:
   - component: {fileID: 4697390076679501825}
   - component: {fileID: 8531635720605251653}
   - component: {fileID: 6256530844439381995}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BlockBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
     
     [SerializeField, Foldout("References")] private PlayerAnimationController animationController;
     [SerializeField, Foldout("References")] private Transform danceTransform;
-    
+    [SerializeField, Foldout("References")] private Rigidbody rigidbody;
     private Vector3 moveDirection;
     private float horizontalInput;
     private bool isGameRunning = false;
@@ -86,7 +86,7 @@ public class PlayerController : MonoBehaviour
                 
             case GameState.Lose:
                 StopMovement();
-                animationController.PlayIdleAnimation();
+                rigidbody.isKinematic = false;
                 break;
         }
     }

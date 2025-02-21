@@ -9,6 +9,7 @@ public class PlayerAnimationController : MonoBehaviour
     static readonly int IsRunning = Animator.StringToHash("isRunning");
     static readonly int IsDancing = Animator.StringToHash("isDancing");
     static readonly int IsIdle = Animator.StringToHash("isIdle");
+    static readonly int IsFalling = Animator.StringToHash("isFalling");
 
     [SerializeField, BoxGroup("Camera Animation")] private float rotateDuration = 15;
     [SerializeField, Foldout("References")] private Animator animator;
@@ -32,6 +33,12 @@ public class PlayerAnimationController : MonoBehaviour
         animator.SetTrigger(IsDancing);
     }
 
+    [Button()]
+    public void PlayFallAnimation()
+    {
+        animator.SetTrigger(IsFalling);
+    }
+    
     public void RotateCameraTransform()
     {
         cameraRotateTransform.DOLocalRotate(new Vector3(0, 360, 0), rotateDuration, RotateMode.FastBeyond360)
