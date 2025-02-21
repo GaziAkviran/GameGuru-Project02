@@ -35,7 +35,7 @@ public class ObjectPool<T> where T : MonoBehaviour, IPoolable
         return newObject;
     }
 
-    public T Get(Vector3 position, Quaternion rotation, params object[] initArgs)
+    public T Get(Vector3 position, Quaternion rotation, InitData initData)
     {
         T objectToReuse;
 
@@ -52,7 +52,7 @@ public class ObjectPool<T> where T : MonoBehaviour, IPoolable
         objectToReuse.transform.rotation = rotation;
         objectToReuse.gameObject.SetActive(true);
      
-        objectToReuse.Init(initArgs);
+        objectToReuse.Init(initData);
 
         activeObjects.Add(objectToReuse);
 

@@ -34,10 +34,10 @@ public class ObjectPoolManager : MonoBehaviour
         return newPool;
     }
 
-    public T GetFromPool<T>(T prefab, Vector3 position, Quaternion rotation, params object[] initArgs) where T : MonoBehaviour, IPoolable
+    public T GetFromPool<T>(T prefab, Vector3 position, Quaternion rotation, InitData initData) where T : MonoBehaviour, IPoolable
     {
         ObjectPool<T> pool = GetOrCreatePool(prefab, 10, null);
-        return pool.Get(position, rotation, initArgs);
+        return pool.Get(position, rotation, initData);
     }
 
     public void ReturnToPool<T>(T objectToReturn) where T : MonoBehaviour, IPoolable

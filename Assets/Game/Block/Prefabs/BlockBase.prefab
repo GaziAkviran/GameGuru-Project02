@@ -174,4 +174,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f3d920a2a14e46989d1d2d327ed0098, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 0}
+  moveDuration: 1.5
+  meshRenderer: {fileID: 69033953455182039}
