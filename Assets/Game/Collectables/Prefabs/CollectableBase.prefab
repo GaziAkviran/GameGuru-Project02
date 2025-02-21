@@ -115,6 +115,8 @@ MonoBehaviour:
   minHeight: 0.25
   minIdleDuration: 1
   maxIdleDuration: 1.2
+  minRotateDuration: 3
+  maxRotateDuration: 4
   visual: {fileID: 5162325195506393282}
   collectParticle: {fileID: 0}
 --- !u!65 &235589926235420784

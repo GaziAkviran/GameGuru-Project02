@@ -23,15 +23,18 @@ public class CollectableController : MonoBehaviour
     [SerializeField, BoxGroup("Idle Animation Settings")] private float minHeight;
     [SerializeField, BoxGroup("Idle Animation Settings")] private float minIdleDuration;
     [SerializeField, BoxGroup("Idle Animation Settings")] private float maxIdleDuration;
+    [SerializeField, BoxGroup("Idle Animation Settings")] private float minRotateDuration;
+    [SerializeField, BoxGroup("Idle Animation Settings")] private float maxRotateDuration;
     
     [SerializeField, Foldout("References")] private Transform visual;
     [SerializeField, Foldout("References")] private ParticleSystem collectParticle;
 
-    private Tween idleTween, collectTween;
+    private Tween idleTween, collectTween, rotateTween;
     
     void Start()
     {
         PlayIdleAnimation();
+        PlayRotateAnimation();
     }
 
     void OnTriggerEnter(Collider other)
@@ -59,10 +62,19 @@ public class CollectableController : MonoBehaviour
     private void PlayCollectAnimation()
     {
         idleTween.Kill();
+        rotateTween.Kill();
         
         collectTween = visual.DOScale(Vector3.zero, collectDuration)
             .SetEase(Ease.InBack)
             .OnComplete(() => Destroy(gameObject));
+    }
+
+    private void PlayRotateAnimation()
+    {
+        var randomDuration = Random.Range(minRotateDuration, maxRotateDuration);
+        rotateTween = transform.DOLocalRotate(new Vector3(0, 360, 0), randomDuration, RotateMode.FastBeyond360)
+            .SetEase(Ease.Linear)
+            .SetLoops(-1, LoopType.Restart);
     }
     
     
