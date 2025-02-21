@@ -8,11 +8,20 @@ public class BlockController : MonoBehaviour, IPoolable
 {
     [SerializeField, BoxGroup("Settings")] private float moveDuration;
     
-    [SerializeField, Foldout("References")] private MeshRenderer meshRenderer;
-
+    [SerializeField, Foldout("References")] private MeshRenderer mainMeshRenderer;
+    [SerializeField, Foldout("References")] private Transform mainCube;
+    [SerializeField, Foldout("References")] private Transform cutCube;
+    [SerializeField, Foldout("References")] private BlockCutter blockCutter; 
+    
     private bool isMoving;
     private Tween moveTween;
     private SpawnSide spawnSide;
+    private Material blockMaterial;
+
+    private BlockController lastBlock;
+
+    public Transform GetMainBlock() => mainCube;
+    public Transform GetCutPiece() => cutCube;
 
     public void Init(InitData data)
     {
@@ -23,6 +32,9 @@ public class BlockController : MonoBehaviour, IPoolable
         {
             spawnSide = blockData.Side;
         }
+    
+        cutCube.gameObject.SetActive(false);
+        cutCube.localScale = Vector3.zero;
         
         MoveBlock();
     }
@@ -31,11 +43,21 @@ public class BlockController : MonoBehaviour, IPoolable
     {
         transform.DOKill();
         isMoving = true;
+        
+        cutCube.gameObject.SetActive(false);
+        cutCube.localScale = Vector3.zero;
     }
 
     private void AssignRandomMaterial()
     {
-        meshRenderer.material = BlockColorManager.Instance.GetRandomMaterial();
+        blockMaterial = BlockColorManager.Instance.GetRandomMaterial();
+        mainMeshRenderer.material = blockMaterial;
+    
+        MeshRenderer cutRenderer = cutCube.GetComponent<MeshRenderer>();
+        if (cutRenderer != null)
+        {
+            cutRenderer.material = blockMaterial;
+        }
     }
     
     private void MoveBlock()
@@ -56,7 +78,25 @@ public class BlockController : MonoBehaviour, IPoolable
         if (!isMoving) return;
 
         isMoving = false;
-        moveTween.Kill();
-        BlockManager.Instance.OnBlockPlaced(this); 
+
+        if (moveTween != null && moveTween.IsActive())
+        {
+            moveTween.Kill();
+        }
+        
+        BlockManager.Instance.OnBlockPlaced(this);
+        CheckAndCutBlock();
+    }
+
+    private void CheckAndCutBlock()
+    {
+        if (BlockManager.Instance.ActiveBlocks.Count < 2) return;
+
+        lastBlock = BlockManager.Instance.ActiveBlocks[BlockManager.Instance.ActiveBlocks.Count - 3];
+        
+        if (blockCutter != null)
+        {
+            bool isCut = blockCutter.TryCutBlock(this, lastBlock);
+        }
     }
 }

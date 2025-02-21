@@ -19,9 +19,9 @@ public class BlockManager : MonoSingleton<BlockManager>
     [SerializeField, Foldout("References")] private BlockController blockPrefab;
     [SerializeField, Foldout("References")] private Transform leftPoint;
     [SerializeField, Foldout("References")] private Transform rightPoint;
-    
+    [SerializeField, Foldout("References")]private List<BlockController> activeBlocks = new List<BlockController>();
     private ObjectPool<BlockController> blockPool;
-    private List<BlockController> activeBlocks = new List<BlockController>();
+    
     private bool isSpawning = false;
     private SpawnSide lastSpawnSide = SpawnSide.Right;
     private float currentZPosition = 0f;
@@ -29,6 +29,8 @@ public class BlockManager : MonoSingleton<BlockManager>
 
     public Transform LeftPoint => leftPoint;
     public Transform RightPoint => rightPoint;
+
+    public List<BlockController> ActiveBlocks => activeBlocks;
     
     private void Start()
     {
@@ -50,17 +52,13 @@ public class BlockManager : MonoSingleton<BlockManager>
     
     private void HandleGameStateChanged(GameState newState)
     {
-        switch (newState)
+        if (newState == GameState.Gameplay)
         {
-            case GameState.Gameplay:
-                StartSpawning();
-                break;
-
-            case GameState.MainMenu:
-            case GameState.Win:
-            case GameState.Lose:
-                StopSpawning();
-                break;
+            StartSpawning();
+        }
+        else
+        {
+            StopSpawning();
         }
     }
 
@@ -77,7 +75,7 @@ public class BlockManager : MonoSingleton<BlockManager>
     }
 
     [Button()]
-    public void StartSpawning()
+    private void StartSpawning()
     {
         if (!isSpawning)
         {
@@ -91,7 +89,7 @@ public class BlockManager : MonoSingleton<BlockManager>
         isSpawning = false;
     }
 
-    public void SpawnNextBlock()
+    private void SpawnNextBlock()
     {
         if (!isSpawning) return;
 
@@ -103,7 +101,7 @@ public class BlockManager : MonoSingleton<BlockManager>
         }
     }
 
-    public BlockController SpawnBlock()
+    private BlockController SpawnBlock()
     {
         if (blockPool == null) return null;
 
