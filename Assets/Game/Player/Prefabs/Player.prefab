@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6467600778162823660}
   m_Layer: 0
   m_Name: Visual
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 4345113764924952650}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 717a01cb2d0434866b409ffcee687221, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forwardSpeed: 5
+  forwardSpeed: 1
   horizontalSpeed: 5
   horizontalLimit: 5
   animationController: {fileID: 4345113764924952650}
@@ -192,6 +192,21 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: c69fba8e89651054a8e17e8e58f2b3d4,
         type: 3}
       propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c69fba8e89651054a8e17e8e58f2b3d4,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 1082271958561512970, guid: c69fba8e89651054a8e17e8e58f2b3d4,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 1787390712724228314, guid: c69fba8e89651054a8e17e8e58f2b3d4,
+        type: 3}
+      propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: c69fba8e89651054a8e17e8e58f2b3d4,
