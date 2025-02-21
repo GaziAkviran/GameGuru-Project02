@@ -11,6 +11,11 @@ public class BlockCutter : MonoBehaviour
     [SerializeField, BoxGroup("Falling Peaces Settings")] private float fallingPieceLifetime = 2f;
     [SerializeField, BoxGroup("Falling Peaces Settings")] private float fallingPieceMass = 0.5f;
     
+    private bool IsPerfectCut(float newWidth, float lastWidth, float tolerance = 0.05f)
+    {
+        return Mathf.Abs(newWidth - lastWidth) <= tolerance;
+    }
+    
     public bool TryCutBlock(BlockController currentBlock, BlockController lastBlock)
     {
         if (!ValidateBlocks(currentBlock, lastBlock))
@@ -37,6 +42,10 @@ public class BlockCutter : MonoBehaviour
         if (cutData.NewWidth >= minimumVisibleCut)
         {
             PerformBlockCut(currentBlock, cutData);
+            
+            bool isPerfectCut = IsPerfectCut(cutData.NewWidth, lastBlockData.Scale.x);
+            SoundManager.Instance.PlayNoteSound(isPerfectCut);
+
             return true;
         }
         else

@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 717a01cb2d0434866b409ffcee687221, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forwardSpeed: 1
+  forwardSpeed: 2
   horizontalSpeed: 5
   horizontalLimit: 5
   animationController: {fileID: 4345113764924952650}

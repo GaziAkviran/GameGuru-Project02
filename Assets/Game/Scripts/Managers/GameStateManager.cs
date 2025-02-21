@@ -8,7 +8,9 @@ public enum GameState
     MainMenu,
     Gameplay,
     Win,
-    Lose
+    Lose,
+    FinishRun,
+    StartRun
 }
 
 public class GameStateManager : MonoSingleton<GameStateManager>
@@ -45,10 +47,18 @@ public class GameStateManager : MonoSingleton<GameStateManager>
             ChangeState(GameState.Gameplay);
         }
     }
+
+    public void FinishRun()
+    {
+        if (currentState == GameState.Gameplay)
+        {
+            ChangeState(GameState.FinishRun);
+        }
+    }
     
     public void WinGame()
     {
-        if (currentState == GameState.Gameplay)
+        if (currentState == GameState.FinishRun)
         {
             ChangeState(GameState.Win);
         }
