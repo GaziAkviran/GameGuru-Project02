@@ -79,7 +79,8 @@ public class BlockCutter : MonoBehaviour
         block.transform.position = new Vector3(newXPosition, originalPosition.y, originalPosition.z);
 
         cutPiece.gameObject.SetActive(true);
-
+        
+        CameraShakeController.Instance.ShakeCamera();
         float cutPieceX = cutData.CutFromRight
             ? originalPosition.x + (originalScale.x / 2) - (cutData.CutAmount / 2) 
             : originalPosition.x - (originalScale.x / 2) + (cutData.CutAmount / 2);
